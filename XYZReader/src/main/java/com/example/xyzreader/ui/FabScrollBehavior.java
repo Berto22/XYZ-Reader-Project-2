@@ -13,7 +13,7 @@ import java.util.List;
  * Created by berto on 7/5/2017.
  */
 
-public class FabScrollBehavior extends FloatingActionButton.Behavior {
+public class FabScrollBehavior extends CoordinatorLayout.Behavior<FloatingActionButton> {
     public FabScrollBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -27,33 +27,11 @@ public class FabScrollBehavior extends FloatingActionButton.Behavior {
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
-        if (dxConsumed > 0) {
-            List<View> dependencies = coordinatorLayout.getDependencies(child);
-            for (View view : dependencies) {
-                if (view instanceof FloatingActionButton) {
-                    ((FloatingActionButton) view).hide();
 
-                    /*((FloatingActionButton) view).hide(new FloatingActionButton.OnVisibilityChangedListener(){
-                        @Override
-                        public void onHidden(FloatingActionButton fab) {
-                            super.onShown(fab);
-                            fab.setVisibility(View.INVISIBLE);
-                        }
-                    });*/
-
-                    //child.hide();
-                    //&& child.getVisibility() == View.VISIBLE
-                }
-            }
-        } else if (dxConsumed < 0) {
-            List<View> dependencies = coordinatorLayout.getDependencies(child);
-            for (View view : dependencies) {
-                if (view instanceof FloatingActionButton) {
-                    ((FloatingActionButton) view).show();
-                    //child.show();
-                    //&& child.getVisibility() != View.VISIBLE
-                }
-            }
+        if (dxConsumed > 0 && child.getVisibility() == View.VISIBLE) {
+            child.hide();
+        } else if (dxConsumed < 0 && child.getVisibility() != View.VISIBLE) {
+            child.show();
         }
     }
 }
