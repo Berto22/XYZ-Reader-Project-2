@@ -275,7 +275,6 @@ public class ArticleListActivity extends AppCompatActivity implements
             ViewCompat.setTransitionName(holder.thumbnailView, getString(R.string.transition_1) + position);
             holder.thumbnailView.setTag(getString(R.string.transition_1) + position);
             mImagePosition = position;
-            Log.d(TAG, "position in articlelistactivity " + position);
         }
 
         @Override

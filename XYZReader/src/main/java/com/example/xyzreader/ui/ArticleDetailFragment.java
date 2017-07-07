@@ -172,21 +172,8 @@ public class ArticleDetailFragment extends Fragment implements
                 getActivityCast().onUpButtonFloorChanged(mItemId, ArticleDetailFragment.this);
                 mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
                 updateStatusBar();
-                //fab.setVisibility(View.GONE);
             }
         });
-        /*mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if (scrollY > oldScrollY) {
-                    fab.hide();
-                }
-                if (scrollY < oldScrollY) {
-                    fab.show();
-                }
-            }
-        }); */
-
 
         mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
         mPhotoView.setTransitionName(getString(R.string.transition_1) + mImagePosition);
@@ -376,41 +363,4 @@ public class ArticleDetailFragment extends Fragment implements
         return null;
     }
 
-    /*public class FabScrollBehavior<V extends View> extends CoordinatorLayout.Behavior<V> {
-        public FabScrollBehavior(Context context, AttributeSet attrs) {
-            super(context, attrs);
-        }
-
-        @Override
-        public boolean layoutDependsOn(CoordinatorLayout parent, V child, View dependency) {
-            return super.layoutDependsOn(parent, child, dependency) ||
-                    dependency instanceof FloatingActionButton;
-        }
-
-        @Override
-        public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, V child, View directTargetChild, View target, int nestedScrollAxes) {
-            return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL
-                    || super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, nestedScrollAxes);
-        }
-
-        @Override
-        public void onNestedScroll(CoordinatorLayout coordinatorLayout, V child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
-            super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
-            if (dxConsumed > 0) {
-                List<View> dependencies = coordinatorLayout.getDependencies(child);
-                for (View view : dependencies) {
-                    if (view instanceof FloatingActionButton) {
-                        ((FloatingActionButton) view).hide();
-                    }
-                }
-            } else if (dxConsumed < 0) {
-                List<View> dependencies = coordinatorLayout.getDependencies(child);
-                for (View view : dependencies) {
-                    if (view instanceof FloatingActionButton) {
-                        ((FloatingActionButton) view).show();
-                    }
-                }
-            }
-        }
-    } */
 }
